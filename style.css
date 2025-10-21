@@ -1,3 +1,4 @@
+/* ===== RESET ===== */
 * {
   margin: 0;
   padding: 0;
@@ -18,51 +19,48 @@ body {
   position: relative;
 }
 
-/* ==== FUNDO FLUIDO === */
+/* ==== FUNDO FLUIDO ==== */
 body::before {
   content: "";
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: conic-gradient(from 180deg,
-      rgba(180, 110, 255, 0.25),
-      rgba(50, 0, 70, 0.1),
-      rgba(140, 50, 255, 0.3),
-      rgba(40, 0, 80, 0.15),
-      rgba(180, 110, 255, 0.25));
+  inset: 0;
+  background: conic-gradient(
+    from 180deg,
+    rgba(180, 110, 255, 0.25),
+    rgba(50, 0, 70, 0.1),
+    rgba(140, 50, 255, 0.3),
+    rgba(40, 0, 80, 0.15),
+    rgba(180, 110, 255, 0.25)
+  );
   mix-blend-mode: overlay;
-  animation: swirl 25s ease-in-out infinite alternate;
+  animation: swirl 20s ease-in-out infinite alternate;
   z-index: -2;
-  opacity: 0.7;
-  filter: blur(120px);
+  opacity: 0.8;
+  filter: blur(130px);
 }
 
-/* EVITA BUG NA IMAGEM DE PERFIL */
+/* Evita bug na imagem de perfil */
 .sobre-container img {
   position: relative;
   z-index: 0;
 }
 
-/* Movimento do fundo */
+/* Movimento suave do fundo */
 @keyframes swirl {
   0% {
     transform: rotate(0deg) scale(1);
   }
-
   50% {
-    transform: rotate(10deg) scale(1.2);
+    transform: rotate(12deg) scale(1.15);
   }
-
   100% {
-    transform: rotate(-10deg) scale(1.1);
+    transform: rotate(-12deg) scale(1.1);
   }
 }
 
 /* ==== HEADER ==== */
 header {
-  background: rgba(15, 15, 20, 0.582);
+  background: rgba(20, 10, 30, 0.65);
   backdrop-filter: blur(12px);
   color: #b58cff;
   padding: 1rem 2.5rem;
@@ -73,7 +71,7 @@ header {
   top: 0;
   z-index: 10;
   border-bottom: 1px solid rgba(181, 140, 255, 0.25);
-  box-shadow: 0 0 10px rgba(166, 123, 255, 0.2);
+  box-shadow: 0 0 15px rgba(166, 123, 255, 0.2);
   transition: all 0.4s ease;
 }
 
@@ -82,9 +80,7 @@ header h1 {
   font-weight: 700;
   letter-spacing: 1.8px;
   background-image: linear-gradient(90deg, #a67bff, #7b5cff);
-  background-clip: text;
   -webkit-background-clip: text;
-  color: transparent;
   -webkit-text-fill-color: transparent;
 }
 
@@ -126,11 +122,11 @@ header nav a:hover::after {
 
 /* ==== SECTIONS ==== */
 section {
-  padding: clamp(4rem, 6vw, 6rem) 10%;
+  padding: clamp(4rem, 6vw, 1rem) 10%;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  animation: fadeIn 1s ease forwards;
+  animation: fadeIn 0.8s ease forwards;
 }
 
 @keyframes fadeIn {
@@ -138,7 +134,6 @@ section {
     opacity: 0;
     transform: translateY(15px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -148,12 +143,12 @@ section {
 /* ==== TÍTULOS ==== */
 h2 {
   font-size: clamp(1.8rem, 2.5vw + 0.5rem, 2.3rem);
-  color: #ffffff;
+  color: #fff;
   text-align: left;
   margin-bottom: 2rem;
   position: relative;
   letter-spacing: 1px;
-  text-shadow: 0 0 12px rgba(166, 123, 255, 0.5);
+  text-shadow: 0 0 15px rgba(166, 123, 255, 0.4);
 }
 
 h2::after {
@@ -173,7 +168,7 @@ h2::after {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 3rem;
+  gap: 80px;
 }
 
 .sobre-container p {
@@ -190,46 +185,91 @@ h2::after {
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #a67bff;
-  box-shadow: 0 0 40px rgba(123, 92, 255, 0.5);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 0 45px rgba(123, 92, 255, 0.5);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
   background: radial-gradient(circle at center, #0f0015, #000);
 }
 
 .sobre-container img:hover {
-  transform: scale(1.08) rotate(2deg);
+  transform: scale(1.1) rotate(3deg);
   box-shadow: 0 0 70px rgba(166, 123, 255, 0.8);
 }
+
+/* ==== TECNOLOGIAS ==== */
+.tecnologias-container {
+  margin-top: 3rem;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.tecnologias-container h2 {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* grade em vez de lista linear */
+.tecnologias-container ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1.2rem;
+  padding: 0;
+  justify-items: center;
+}
+
+/* cada item vira um “badge” */
+.tecnologias-container li {
+  font-size: clamp(1rem, 1.1vw + 0.3rem, 1.15rem);
+  color: #fff;
+  background: linear-gradient(135deg, rgba(123, 92, 255, 0.2), rgba(166, 123, 255, 0.1));
+  border: 1px solid rgba(166, 123, 255, 0.3);
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 10px rgba(166, 123, 255, 0.15);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(6px);
+}
+
+/* hover com glow */
+.tecnologias-container li:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 0 20px rgba(166, 123, 255, 0.5);
+  background: linear-gradient(135deg, rgba(166, 123, 255, 0.25), rgba(123, 92, 255, 0.15));
+}
+
+.tecnologias-container h2::after {
+  display: none;
+}
+
 
 /* ==== PROJETOS ==== */
 .projetos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2.5rem;
 }
 
 .card {
-  background: linear-gradient(145deg, #101010, #0c0c0c);
+  background: linear-gradient(145deg, #111, #0b0b0b);
   border-radius: 18px;
   padding: 1.8rem;
   text-align: left;
-  box-shadow: 0 0 20px rgb(166 123 255 / 31%);
+  box-shadow: 0 0 20px rgba(166, 123, 255, 0.25);
   transition: all 0.4s ease;
-  transform-style: preserve-3d;
   position: relative;
-  z-index: 0;
 }
 
 .card:hover {
-  transform: translateY(-12px) scale(1.03);
-  box-shadow: 0 0 35px rgba(166, 123, 255, 0.5),
-    0 0 60px rgba(123, 92, 255, 0.4);
+  transform: translateY(-12px) scale(1.04);
+  box-shadow: 0 0 40px rgba(166, 123, 255, 0.45),
+              0 0 70px rgba(123, 92, 255, 0.35);
 }
 
 .card img {
-  max-width: 100%;
+  width: 100%;
   border-radius: 10px;
   margin-bottom: 15px;
-  /* box-shadow: 0 0 15px rgba(166, 123, 255, 0.2); */
 }
 
 .card h3 {
@@ -254,7 +294,7 @@ h2::after {
   text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(166, 123, 255, 0.3);
+  box-shadow: 0 0 15px rgba(166, 123, 255, 0.3);
   letter-spacing: 0.5px;
 }
 
@@ -305,12 +345,12 @@ h2::after {
 
 /* ==== FOOTER ==== */
 footer {
-  background: rgba(15, 15, 20, 0.9);
+  background: rgba(20, 10, 30, 0.9);
   text-align: center;
   padding: 1.5rem 2rem;
   font-size: 0.9rem;
-  color: #999;
-  border-top: 1px solid rgba(166, 123, 255, 0.2);
+  color: #aaa;
+  border-top: 1px solid rgba(166, 123, 255, 0.25);
   margin-top: 3rem;
   backdrop-filter: blur(10px);
 }
@@ -319,7 +359,7 @@ footer {
 @media (max-width: 768px) {
   header {
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 1rem;
   }
 
   .sobre-container,
@@ -327,6 +367,7 @@ footer {
     flex-direction: column;
     text-align: center;
     align-items: center;
+    gap: 2rem;
   }
 
   .projetos-grid {
